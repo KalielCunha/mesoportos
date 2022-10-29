@@ -136,3 +136,45 @@ ggplot(arrange(pmeso_peso, NM_REGIAO.y), aes(x = NM_MESO, y =rho.est_n, fill = N
 #  units = 'cm',
 #  dpi = 250)
 
+
+
+##SCATERPLOT E HISTOGRAMAS-----------
+
+
+ggplot(p) +
+ aes(x = pib, y = pesototal, colour = NM_REGIAO.y) +
+ geom_point(shape = "circle", size = 1.5) +
+ scale_color_manual(values = c(Nordeste = "#F8766D", Norte = "#31B425", Sudeste = "#20AFEC", Sul = "#FFEF61"
+ )) +
+ labs(x = "PIB", y = "PESO TOTAL ", color = "GRANDE REGIÃO") +
+ theme_minimal()
+#ggsave('figures/scater_pib_peso.jpg', width=17 , height =15, units='cm', dpi=250)
+
+ggplot(p) +
+  aes(x = pib, y = ntotal, colour = NM_REGIAO.y) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_manual(values = c(Nordeste = "#F8766D", Norte = "#31B425", Sudeste = "#20AFEC", Sul = "#FFEF61"
+  )) +
+  labs(x = "PIB", y = "PESO TOTAL ", color = "GRANDE REGIÃO") +
+  theme_minimal()
+#ggsave('figures/scater_pib_n.jpg', width=17 , height =15, units='cm', dpi=250)
+
+ggplot(p) +
+ aes(x = pesototal, fill = NM_REGIAO.y) +
+ geom_histogram(bins = 30L) +
+ scale_fill_hue(direction = 1) +
+ theme_minimal()
+ggsave('figures/hist_peso.jpg', width=17 , height =15, units='cm', dpi=250)
+ggplot(p) +
+  aes(x = ntotal, fill = NM_REGIAO.y) +
+  geom_histogram(bins = 30L) +
+  scale_fill_hue(direction = 1) +
+  theme_minimal()
+ggsave('figures/hist_n.jpg', width=17 , height =15, units='cm', dpi=250)
+ggplot(p) +
+  aes(x = pib, fill = NM_REGIAO.y) +
+  geom_histogram(bins = 30L) +
+  scale_fill_hue(direction = 1) +
+  theme_minimal()
+ggsave('figures/hist_pib.jpg', width=17 , height =15, units='cm', dpi=250)
+

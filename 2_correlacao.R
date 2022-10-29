@@ -7,17 +7,21 @@
     c('ggplot2', 'readxl', 'dplyr', 'readr', 'data.table', 'esquisse',
       'sf',
       'tidyr','car','plyr')
-  package.check <- lapply(
+ {
+   
+     package.check <- lapply(
     packages,
     FUN = function(x) {
       if (!require(x, character.only = TRUE)) {
         install.packages(x, dependencies = TRUE)
         library(x, character.only = TRUE)}})
+   }
   ###CRIAÇÃO DE UMA FUNÇÃO DE CORRELAÇÃO
-  corfun<-function(x, y) {
+  {
+   corfun<-function(x, y) {
     corr=(cor.test(x, y, method="spearman",exact=NULL, conf.level= 0.95))} 
   
-  
+  }
   
   load('p.rda')
 }
@@ -44,7 +48,7 @@
   pchave <- ungroup(p) %>% select(NM_MESO, NM_REGIAO.y) 
   pchave <- unique(pchave)
   p_meso <- left_join(p_meso, pchave, by="NM_MESO")
-  rm(list=ls()[! ls() %in% c("p","p_meso")])
+  rm(list=ls()[! ls() %in% c("p","p_meso","corfun")])
 }
 
 
@@ -115,4 +119,4 @@
                         rho.est_ntotal = corfun(pib, ntotal)$estimate)
   
 }
-save(p_meso, p_mercadoria, p, file='p.rda')
+###save(p_meso, p_mercadoria, p, file='p.rda') DESATIVAR COMENTÁRIO CASO QUEIRA SALVAR
